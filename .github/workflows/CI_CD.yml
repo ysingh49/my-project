@@ -19,6 +19,8 @@ jobs:
         run: >
         
           chmod 600 DevOps_Team_Key.pem
+          
+          echo "${PRIVATE_KEY}" > private_key && chmod 600 private_key
 
-          ssh -o StrictHostKeyChecking=no -i DevOps_Team_Key.pem ${USER_NAME}@${HOSTNAME} 
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
 
