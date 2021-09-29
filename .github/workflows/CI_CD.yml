@@ -29,9 +29,9 @@ jobs:
           
           cat private_key
 
-          ssh -o StrictHostKeyChecking=no -i DevOps_Team_Key.pem ${USER_NAME}@${HOSTNAME} 
+          ssh -o StrictHostKeyChecking=no -i DevOps_Team_Key.pem ${USER_NAME}@${HOSTNAME} 'hostname|pwd'
 
-            #Now we have got the access of EC2 and we will start the deploy .
+          #Now we have got the access of EC2 and we will start the deploy .
           echo "Welcome to EC2 Instnace"
           
           hostname
@@ -39,4 +39,5 @@ jobs:
           pwd
           
           sleep 20
+          
           echo "Bye"
