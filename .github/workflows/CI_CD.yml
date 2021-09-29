@@ -19,7 +19,7 @@ jobs:
         run: >
           echo "test starts"
           
-          echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCKvZfUkbiQ0HOB+H5E6LxuvKp9vwbX/1c6giGXREh9w+UtPr/JnbgW9DiiuhsiGb9cpDwK2nYlrnL4D7GhRL/yB5J4HRSHTsHy6QCqmOSC6qubb0k/j1c9Uz+TKtd6WR6sppv+kfqRyU5ofkyKDE8RT/uQ3GmamBV8pXOciZnfU2z0hwIb8OZYkLRbN9fGMzysgHwB+Gqhk0220sC3rNv6T9Zx7DVoxoCeXdtVIwYS46StJTXrYxYbvDunYBSCCsfSK6b9srgwAJ2iFCnxwgsVJRKyhckN5JWlO4C3yA7m/Ri3YMUpIVIG+rQ4SmrUCYKiBVEXYpTrzlj+T2mnF17R DevOps_Team_Key" > private_key && chmod 400 private_key
+          echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCKvZfUkbiQ0HOB+H5E6LxuvKp9vwbX/1c6giGXREh9w+UtPr/JnbgW9DiiuhsiGb9cpDwK2nYlrnL4D7GhRL/yB5J4HRSHTsHy6QCqmOSC6qubb0k/j1c9Uz+TKtd6WR6sppv+kfqRyU5ofkyKDE8RT/uQ3GmamBV8pXOciZnfU2z0hwIb8OZYkLRbN9fGMzysgHwB+Gqhk0220sC3rNv6T9Zx7DVoxoCeXdtVIwYS46StJTXrYxYbvDunYBSCCsfSK6b9srgwAJ2iFCnxwgsVJRKyhckN5JWlO4C3yA7m/Ri3YMUpIVIG+rQ4SmrUCYKiBVEXYpTrzlj+T2mnF17R DevOps_Team_Key" > private_key && chmod 600 private_key
           
           cat private_key
 
