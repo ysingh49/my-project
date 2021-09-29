@@ -11,33 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy in EC2
+      - name: SSH to EC2
         env:
           PRIVATE_KEY: '${{ secrets.AWS_ACCESS_KEY  }}'
           HOSTNAME: '${{ secrets.HOSTNAME  }}'
           USER_NAME: '${{ secrets.USERNAME  }}'
         run: >
-          echo "test starts"
-          
-          pwd
-          
-          ls
-          
+        
           chmod 600 DevOps_Team_Key.pem
-          
-          echo "${PRIVATE_KEY}" > private_key && chmod 600 private_key
-          
-          cat private_key
 
-          ssh -o StrictHostKeyChecking=no -i DevOps_Team_Key.pem ${USER_NAME}@${HOSTNAME} 'hostname|pwd'
+          ssh -o StrictHostKeyChecking=no -i DevOps_Team_Key.pem ${USER_NAME}@${HOSTNAME} 
 
-          #Now we have got the access of EC2 and we will start the deploy .
-          echo "Welcome to EC2 Instnace"
-          
-          hostname
-          
-          pwd
-          
-          sleep 20
-          
-          echo "Bye"
