@@ -16,6 +16,10 @@ on:
         description: Include 🎉🤣 emojis
       environment:
         type: environment
+        description: Choose environment
+        options: 
+        - test
+        - dev
 
 jobs:
   greet:
