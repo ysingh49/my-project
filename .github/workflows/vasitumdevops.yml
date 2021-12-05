@@ -1,0 +1,25 @@
+#This is a basic workflow to connect to EC2 Instance
+#Owner:- Vasitum Devops Team
+#Date:- Dec 6, 2021
+
+name: vasitumdevops 
+on: 
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Define branch name'     
+        required: true
+        default: 'master'
+      environment:
+        type: choice
+        description: Choose environment
+        options: 
+        - test
+        - dev
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Env: ${{ github.event.inputs.environment }}" 
+        echo "Branch: ${{ github.event.inputs.branch }}"
