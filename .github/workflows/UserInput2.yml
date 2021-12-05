@@ -15,7 +15,7 @@ on:
         type: boolean
         description: Include 🎉🤣 emojis
       environment:
-        type: environment
+        type: choice
         description: Choose environment
         options: 
         - test
