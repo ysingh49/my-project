@@ -33,9 +33,9 @@ jobs:
       env:
         KEY: ${{ github.event.inputs.environment }}_ACCESS_KEY
         HOST: secrets.${{ github.event.inputs.environment }}_HOSTNAME
-        ACCESS_KEY: '${{ secrets[env.KEY]  }}'
-        
-        HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
+        #ACCESS_KEY: '${{ secrets[env.KEY]  }}'
+        ACCESS_KEY: ${{ secrets.TEST_HOSTNAME  }}'        
+        HOSTNAME: '${{ secrets.TEST_ACCESS_KEY  }}'
         USERNAME: '${{ secrets.USERNAME  }}'        
       run: >
       
