@@ -6,6 +6,10 @@ name: vasitumdevops
 on: 
   workflow_dispatch:
     inputs:
+      repo:
+        description: 'Define Repository name'     
+        required: true
+        default: 'my-project'
       branch:
         description: 'Define branch name'     
         required: true
@@ -22,9 +26,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
+        repository: ${{ github.event.inputs.repo }}
         ref: ${{ github.event.inputs.branch }}
     - run: |
         echo "Env: ${{ github.event.inputs.environment }}" 
         echo "Branch: ${{ github.event.inputs.branch }}"
+        echo "Repo: ${{ github.event.inputs.repo }}"
         echo "RepoName: ${{ github.event.repository.name }}"
         echo "Org: ${{ github.event.repository.owner.login }}"
