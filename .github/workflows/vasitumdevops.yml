@@ -31,9 +31,10 @@ jobs:
         
     - name: Deploy to EC2
       env:
-        KEY: secrets.${{ github.event.inputs.environment }}_ACCESS_KEY
+        KEY: ${{ github.event.inputs.environment }}_ACCESS_KEY
         HOST: secrets.${{ github.event.inputs.environment }}_HOSTNAME
         ACCESS_KEY: '${{ secrets[env.KEY]  }}'
+        
         HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
         USERNAME: '${{ secrets.USERNAME  }}'        
       run: >
