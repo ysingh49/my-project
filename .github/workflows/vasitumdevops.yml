@@ -31,20 +31,14 @@ jobs:
         
     - name: Deploy to EC2
       env:
-        YOGIHOST: ${{ github.event.inputs.environment }}_HOSTNAME
-        #ACCESS_KEY: '${{ secrets.TEST_ACCESS_KEY  }}'
-        #HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
         ACCESS_KEY: ${{ secrets[format('{0}_ACCESS_KEY', github.event.inputs.environment)]  }}
         HOSTNAME: ${{ secrets[format('{0}_HOSTNAME', github.event.inputs.environment)]  }}
         USERNAME: '${{ secrets.USERNAME  }}'
       run: >
-        #echo "Env: ${{ github.event.inputs.environment }}" 
-        #echo "Branch: ${{ github.event.inputs.branch }}"
-        #echo "Repo: ${{ github.event.inputs.repo }}"
-        #echo "RepoName: ${{ github.event.repository.name }}"
-        #echo "Org: ${{ github.event.repository.owner.login }}"
-        echo env.YOGIHOST
-        
+        echo "Env: ${{ github.event.inputs.environment }}" 
+        echo "Branch: ${{ github.event.inputs.branch }}"
+        echo "Repo: ${{ github.event.inputs.repo }}"
+                
         echo "${ACCESS_KEY}" > access_key && chmod 600 access_key
         
         ssh -o StrictHostKeyChecking=no -i access_key ${USERNAME}@${HOSTNAME} touch test.txt
