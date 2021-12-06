@@ -30,11 +30,19 @@ jobs:
         ref: ${{ github.event.inputs.branch }}
         
     - name: Deploy to EC2
+      if: ${{ github.event.inputs.environment == 'TEST' }}
       env:
         KEY: secrets.${{ github.event.inputs.environment }}_ACCESS_KEY
-        ACCESS_KEY: '${{ secrets.${{ github.event.inputs.environment }}_ACCESS_KEY  }}'
+        ACCESS_KEY: '${{ secrets.TEST_ACCESS_KEY  }}'
         HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
         USERNAME: '${{ secrets.USERNAME  }}'
+      
+      if: ${{ github.event.inputs.environment == 'DEV' }}
+      env:
+        ACCESS_KEY: '${{ secrets.DEV_ACCESS_KEY  }}'
+        HOSTNAME: '${{ secrets.DEV_HOSTNAME  }}'
+        USERNAME: '${{ secrets.USERNAME  }}'
+        
       run: >
       
         echo "Env: ${{ github.event.inputs.environment }}" 
