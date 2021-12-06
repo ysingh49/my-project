@@ -30,11 +30,11 @@ jobs:
         ref: ${{ github.event.inputs.branch }}
         
     - name: Deploy to EC2
-      if: ${{ github.event.inputs.environment == 'TEST' }}
       env:
         KEY: secrets.${{ github.event.inputs.environment }}_ACCESS_KEY
+        HOST: secrets.${{ github.event.inputs.environment }}_HOSTNAME
         ACCESS_KEY: '${{ secrets[env.KEY]  }}'
-        HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
+        HOSTNAME: '${{ secrets[env.HOST]  }}'
         USERNAME: '${{ secrets.USERNAME  }}'        
       run: >
       
@@ -45,9 +45,11 @@ jobs:
         echo "Repo: ${{ github.event.inputs.repo }}" 
         
         echo "${KEY}"
+        
+        echo "${HOST}"
                 
-        #echo "${ACCESS_KEY}" > access_key && chmod 600 access_key
+        echo "${ACCESS_KEY}" > access_key && chmod 600 access_key
         
         #scp -o StrictHostKeyChecking=no -i access_key  test.txt ${USERNAME}@${HOSTNAME}:~/
         
-        #ssh -o StrictHostKeyChecking=no -i access_key ${USERNAME}@${HOSTNAME} touch test.txt
+        ssh -o StrictHostKeyChecking=no -i access_key ${USERNAME}@${HOSTNAME} touch test.txt
