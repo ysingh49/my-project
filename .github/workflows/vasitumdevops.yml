@@ -28,9 +28,18 @@ jobs:
       with:
         repository: ${{ github.event.repository.owner.login }}/${{ github.event.inputs.repo }}
         ref: ${{ github.event.inputs.branch }}
+    - name: Deploy to EC2
+      env:
+          ACCESS_KEY: '${{ secrets.${{ github.event.inputs.environment }}_ACCESS_KEY  }}'
+          HOSTNAME: '${{ secrets.${{ github.event.inputs.environment }}_HOSTNAME  }}'
+          USERNAME: '${{ secrets.USERNAME  }}'
     - run: |
         echo "Env: ${{ github.event.inputs.environment }}" 
         echo "Branch: ${{ github.event.inputs.branch }}"
         echo "Repo: ${{ github.event.inputs.repo }}"
         echo "RepoName: ${{ github.event.repository.name }}"
         echo "Org: ${{ github.event.repository.owner.login }}"
+        
+        echo "${ACCESS_KEY}" > access_key && chmod 600 access_key
+        
+        ssh -o StrictHostKeyChecking=no -i access_key ${USERNAME}@${HOSTNAME} touch test.txt
