@@ -34,7 +34,7 @@ jobs:
         YOGIHOST: ${{ github.event.inputs.environment }}_HOSTNAME
         ACCESS_KEY: '${{ secrets.TEST_ACCESS_KEY  }}'
         #HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
-        HOSTNAME: '${{ secrets[env.YOGIHOST]  }}'
+        HOSTNAME: ${{ secrets[env.YOGIHOST]  }}
         USERNAME: '${{ secrets.USERNAME  }}'
       run: >
         #echo "Env: ${{ github.event.inputs.environment }}" 
@@ -42,6 +42,7 @@ jobs:
         #echo "Repo: ${{ github.event.inputs.repo }}"
         #echo "RepoName: ${{ github.event.repository.name }}"
         #echo "Org: ${{ github.event.repository.owner.login }}"
+        echo env.YOGIHOST
         
         echo "${ACCESS_KEY}" > access_key && chmod 600 access_key
         
