@@ -18,8 +18,8 @@ on:
         type: choice
         description: Choose environment
         options: 
-        - test
-        - dev
+        - TEST
+        - DEV
 jobs:
   printInputs:
     runs-on: ubuntu-latest
