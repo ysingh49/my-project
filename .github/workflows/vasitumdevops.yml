@@ -18,8 +18,8 @@ on:
         type: choice
         description: Choose environment
         options: 
-        - TEST
-        - DEV
+        - test
+        - dev
 jobs:
   printInputs:
     runs-on: ubuntu-latest
@@ -31,26 +31,16 @@ jobs:
         
     - name: Deploy to EC2
       env:
-        KEY: ${{ github.event.inputs.environment }}_ACCESS_KEY
-        HOST: secrets.${{ github.event.inputs.environment }}_HOSTNAME
-        #ACCESS_KEY: '${{ secrets[env.KEY]  }}'
-        ACCESS_KEY: ${{ secrets.TEST_ACCESS_KEY  }}'        
+        ACCESS_KEY: '${{ secrets.TEST_ACCESS_KEY  }}'
         HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
-        USERNAME: '${{ secrets.USERNAME  }}'        
+        USERNAME: '${{ secrets.USERNAME  }}'
       run: >
-      
-        echo "Env: ${{ github.event.inputs.environment }}" 
+        #echo "Env: ${{ github.event.inputs.environment }}" 
+        #echo "Branch: ${{ github.event.inputs.branch }}"
+        #echo "Repo: ${{ github.event.inputs.repo }}"
+        #echo "RepoName: ${{ github.event.repository.name }}"
+        #echo "Org: ${{ github.event.repository.owner.login }}"
         
-        echo "Branch: ${{ github.event.inputs.branch }}" 
-        
-        echo "Repo: ${{ github.event.inputs.repo }}" 
-        
-        echo "${KEY}"
-        
-        echo "${HOST}"
-                
         echo "${ACCESS_KEY}" > access_key && chmod 600 access_key
-        
-        #scp -o StrictHostKeyChecking=no -i access_key  test.txt ${USERNAME}@${HOSTNAME}:~/
         
         ssh -o StrictHostKeyChecking=no -i access_key ${USERNAME}@${HOSTNAME} touch test.txt
