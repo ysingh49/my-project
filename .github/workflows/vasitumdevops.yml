@@ -36,6 +36,7 @@ jobs:
         HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
         USERNAME: '${{ secrets.USERNAME  }}'
       run: >
+      
         "Env: ${{ github.event.inputs.environment }}" >> test.txt
         
         "Branch: ${{ github.event.inputs.branch }}" >> test.txt
