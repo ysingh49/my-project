@@ -31,12 +31,15 @@ jobs:
         
     - name: Deploy to EC2
       env:
-        ACCESS_KEY: '${{ secrets.TEST_ACCESS_KEY  }}'
+        KEY: secrets.'${{ github.event.inputs.environment }}'_ACCESS_KEY
+        ACCESS_KEY: '${{ KEY  }}'
         HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
         USERNAME: '${{ secrets.USERNAME  }}'
       run: >
         "Env: ${{ github.event.inputs.environment }}" >> test.txt
+        
         "Branch: ${{ github.event.inputs.branch }}" >> test.txt
+        
         "Repo: ${{ github.event.inputs.repo }}" >> test.txt
                 
         echo "${ACCESS_KEY}" > access_key && chmod 600 access_key
