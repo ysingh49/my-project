@@ -35,9 +35,9 @@ jobs:
         HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
         USERNAME: '${{ secrets.USERNAME  }}'
       run: >
-        echo "Env: ${{ github.event.inputs.environment }}" >> test.txt
-        echo "Branch: ${{ github.event.inputs.branch }}" >> test.txt
-        echo "Repo: ${{ github.event.inputs.repo }}" >> test.txt
+        Env: ${{ github.event.inputs.environment }} >> test.txt
+        Branch: ${{ github.event.inputs.branch }} >> test.txt
+        Repo: ${{ github.event.inputs.repo }} >> test.txt
                 
         echo "${ACCESS_KEY}" > access_key && chmod 600 access_key
         
