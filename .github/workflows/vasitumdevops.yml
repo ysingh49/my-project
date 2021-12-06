@@ -24,4 +24,4 @@ jobs:
         echo "Env: ${{ github.event.inputs.environment }}" 
         echo "Branch: ${{ github.event.inputs.branch }}"
         echo "RepoName: ${{ github.event.repository.name }}"
-        echo "Org: ${{ github.event.repository.owner.name }}"
+        echo "Org: ${{ github.event.repository.owner.login }}"
