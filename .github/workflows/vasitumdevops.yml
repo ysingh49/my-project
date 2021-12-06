@@ -33,7 +33,7 @@ jobs:
         ACCESS_KEY: '${{ secrets.TEST_ACCESS_KEY  }}'
         HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
         USERNAME: '${{ secrets.USERNAME  }}'
-    - run: >
+      run: >
         #echo "Env: ${{ github.event.inputs.environment }}" 
         #echo "Branch: ${{ github.event.inputs.branch }}"
         #echo "Repo: ${{ github.event.inputs.repo }}"
