@@ -31,8 +31,10 @@ jobs:
         
     - name: Deploy to EC2
       env:
+        YOGIHOST: ${{ github.event.inputs.environment }}_HOSTNAME
         ACCESS_KEY: '${{ secrets.TEST_ACCESS_KEY  }}'
-        HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
+        #HOSTNAME: '${{ secrets.TEST_HOSTNAME  }}'
+        HOSTNAME: '${{ secrets[env.YOGIHOST]  }}'
         USERNAME: '${{ secrets.USERNAME  }}'
       run: >
         #echo "Env: ${{ github.event.inputs.environment }}" 
