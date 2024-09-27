@@ -1,0 +1,26 @@
+#This is a basic workflow to connect to EC2 Instance
+#Owner:- Vasitum Devops Team
+#Date:- Sep 28, 2021
+
+name: CI/CD 
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: SSH to EC2
+        env:
+          PRIVATE_KEY: '${{ secrets.AWS_ACCESS_KEY  }}'
+          HOSTNAME: '${{ secrets.HOSTNAME  }}'
+          USER_NAME: '${{ secrets.USERNAME  }}'
+        run: >
+        
+          chmod 600 DevOps_Team_Key.pem
+          
+          echo "${PRIVATE_KEY}" > private_key && chmod 600 private_key
+
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
+
